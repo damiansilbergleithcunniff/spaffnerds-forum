@@ -13,7 +13,6 @@ var db;
 _.mixin(require('underscore.deep'));
 
 var mongoModule = module.exports;
-
 mongoModule.questions = [
 	{
 		name: 'mongo:host',
@@ -76,13 +75,14 @@ mongoModule.init = function (callback) {
 		servers.push(hosts[i] + ':' + ports[i]);
 	}
 
-	var connString = 'mongodb://' + usernamePassword + servers.join() + '/' + nconf.get('mongo:database');
+	var connString = 'mongodb://' + usernamePassword + servers.join() + '/' + nconf.get('mongo:database') + "?ssl=true";
 
 	var connOptions = {
 		poolSize: 10,
 		reconnectTries: 3600,
 		reconnectInterval: 1000,
 		autoReconnect: true,
+		server: {sslValidate: false}
 	};
 
 	connOptions = _.deepExtend(connOptions, nconf.get('mongo:options') || {});
