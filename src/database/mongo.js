@@ -75,7 +75,8 @@ mongoModule.init = function (callback) {
 		servers.push(hosts[i] + ':' + ports[i]);
 	}
 
-	var connString = 'mongodb://' + usernamePassword + servers.join() + '/' + nconf.get('mongo:database') + "?ssl=true";
+	var connString = 'mongodb://' + usernamePassword + servers.join() + '/' + nconf.get('mongo:database') + "?ssl=true&replicaSet=Cluster0-shard-0";
+	console.log(connString)
 
 	var connOptions = {
 		poolSize: 10,
