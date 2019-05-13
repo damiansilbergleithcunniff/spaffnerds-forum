@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nodebb:
+    build:
+      context: ./
+      dockerfile: Dockerfile-alpine
+    image: damiansilbergleithcunniff/nodebb-apline/nodebb:v1.12.x
